@@ -34,13 +34,13 @@ class Image
   def output 
     final_array = []
   
-    @rows.each_with_index do |row, index|
-      prev_row = @rows[index - 1]
+    @data.each_with_index do |row, index|
+      prev_row = @data[index - 1]
         #if index - 1 = -1 then []
         if index - 1 == -1
           prev_row = []
         end
-      next_row = @rows[index + 1]
+      next_row = @data[index + 1]
         if index + 1 == 4
           next_row = []
         end
@@ -62,3 +62,11 @@ image1 = Image.new([
 ])
 image1.output
 
+expected_output = [   
+    [0, 1, 0, 0],
+    [1, 1, 1, 1],
+    [0, 1, 1, 1],
+    [0, 0, 0, 1]
+]
+
+image1.blur
