@@ -46,22 +46,24 @@ class Image
     final_array << new_row
     end
     return final_array
-  
-  def blur
-    array_blur = self.output
-    return Image.new(@data)
   end
 
+  def blur
+    array_blur = self.output
+    return array_blur
   end
+  
 end
 
 
-image1 = Image.new([
+image = Image.new([
 [0, 0, 0, 0],
 [0, 1, 0, 0],
 [0, 0, 0, 1],
 [0, 0, 0, 0]
 ])
+
+
 
 expected_output = [   
     [0, 1, 0, 0],
@@ -69,3 +71,5 @@ expected_output = [
     [0, 1, 1, 1],
     [0, 0, 0, 1]
 ]
+
+
