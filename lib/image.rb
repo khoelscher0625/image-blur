@@ -38,7 +38,7 @@ class Image
           prev_row = []
         end
       next_row = @data[index + 1]
-        if index + 1 == 4
+        if index + 1 == @data.count
           next_row = []
         end
       new_row = self.transform(prev_row, row, next_row)             
@@ -52,24 +52,47 @@ class Image
     array_blur = self.output
     return array_blur
   end
+
+  def working(rows) 
+    final_array = []
   
+    rows.each_with_index do |row, ind|
+      prev_row = rows[ind - 1]
+        #if index - 1 = -1 then []
+        if ind - 1 == -1
+          prev_row = []
+        end
+      next_row = rows[ind + 1]
+
+        if ind + 1 >= rows.length
+          next_row = []
+        end
+      new_row = self.transform(prev_row, row, next_row)             
+                    #changed rows
+    final_array << new_row
+    end
+    return final_array
+
+  end
+
+  def final
+    self.working(@data)
+  end
+
+  def change(distance)
+    #distance from user is the same number of the times 
+    #we want the code to run
+    #run the working method on @rows the first time, then store that 
+    # result in a variable
+    change = self.working(@data)
+    manhattan = self.working(change)
+    #everytime we want it to run after the initial (2 or more)
+    # we want the working method to work on that new variable 
+    # instead of @rows
+    return manhattan
+#TIP: you do not have to touch anycode that is not in this blur method*
+  end
+
 end
-
-
-image = Image.new([
-[0, 0, 0, 0],
-[0, 1, 0, 0],
-[0, 0, 0, 1],
-[0, 0, 0, 0]
-])
-
-
-
-expected_output = [   
-    [0, 1, 0, 0],
-    [1, 1, 1, 1],
-    [0, 1, 1, 1],
-    [0, 0, 0, 1]
-]
 
 
