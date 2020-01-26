@@ -51,28 +51,29 @@ RSpec.describe Image, type: :model do
     end
   end
 
-
-  describe "image manhattan distance should work" do
-    it "should transform according to the manhattan distance" do
-      input = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 1]
+  describe "edge image transformation should work" do
+    it "should transform an edge image" do
+    input = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [1, 0, 0, 0],
+      [0, 0, 0, 0]
     ]
 
     expected = [
-    [1, 1, 1, 0, 0, 0],
-    [1, 1, 1, 1, 0, 0],
-    [1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1]
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0 ,0, 0],
+      [1, 0, 0, 0],
+      [1, 1, 0, 0],
+      [1, 0, 0, 0]
     ]
-  image = Image.new(input)
-  expect(image.change(3)).to eq expected
-    end
+
+    image = Image.new(input)
+    expect(image.final). to eq expected
   end
+end
+
 end
